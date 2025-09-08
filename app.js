@@ -31,7 +31,7 @@ const missions = [
         scoring: [
             { condition: "Topsoil sections are completely cleared", points: 10, unit: "each" }
         ],
-        maxPoints: 20,
+        maxPoints: 30,
         attachmentType: "Active",
         difficulty: 2,
         priority: "Medium",
@@ -284,17 +284,17 @@ const missions = [
         imagePath: "images/mission-14-forum.png",
         modelImagePath: "images/mission-14-forum.model.png",
         scoring: [
-            { condition: "Artifacts touching the mat and at least partly in the forum", points: 5, unit: "each" }
+            { condition: "Artifacts are delivered to the forum", points: 5, unit: "each" }
         ],
-        maxPoints: 35,
+        maxPoints: 20,
         attachmentType: "Active",
         difficulty: 2,
         priority: "High",
         strategies: [
-            "7 artifacts possible: Brush, Topsoil, Precious Artifact, Opposing Team's Minecart, Ore with Fossilized Artifact, Millstone, Scale Pan",
-            "Collect artifacts from other missions and deliver to forum",
-            "Can be done by hand in home area",
-            "Maximum 35 points if all 7 artifacts delivered"
+            "Simple delivery mission with good point value",
+            "Multiple artifacts available for transport",
+            "Artifacts may come from Mission 6 (Forge ore blocks)",
+            "Reliable points for completing other missions first"
         ],
         noHandTouch: false
     },
@@ -333,7 +333,7 @@ const gameInfo = {
         description: "All equipment fits in one launch area at start of match"
     },
     matchDuration: "2.5 minutes",
-    totalPossiblePoints: 565 // All 15 missions (495) + precision (50) + equipment bonus (20)
+    totalPossiblePoints: 520 // All 15 missions (450) + precision (50) + equipment bonus (20)
 };
 
 // Application State
@@ -478,18 +478,18 @@ function setupKeyboardShortcuts() {
 // Mode switching
 function switchMode(mode) {
     currentMode = mode;
-    
+
     // Update tab styles
     document.querySelectorAll('.nav-tab').forEach(tab => {
         tab.classList.toggle('active', tab.dataset.mode === mode);
     });
-    
+
     // Update content visibility
     document.querySelectorAll('.mode-content').forEach(content => {
         content.classList.remove('active');
     });
     document.getElementById(`${mode}-mode`).classList.add('active');
-    
+
     // Initialize mode-specific content
     switch(mode) {
         case 'reference':
@@ -505,28 +505,28 @@ function switchMode(mode) {
 function updateFlashcard() {
     const mission = missions[currentMissionIndex];
     const card = document.getElementById('flashcard');
-    
+
     // Remove flip state
     card.classList.remove('flipped');
-    
+
     // Update progress
     document.getElementById('current-mission').textContent = currentMissionIndex + 1;
     document.getElementById('total-missions').textContent = missions.length;
-    document.getElementById('progress-fill').style.width = 
+    document.getElementById('progress-fill').style.width =
         `${((currentMissionIndex + 1) / missions.length) * 100}%`;
-    
+
     // Update front - Use model image (just the LEGO model without text)
     document.querySelector('.mission-number').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
     document.getElementById('mission-image').src = mission.modelImagePath || mission.imagePath;
     document.getElementById('mission-image').alt = `Mission ${mission.number} Model`;
-    
+
     // Update back - Use full mission card image
     document.getElementById('mission-title').textContent = mission.title;
     document.getElementById('mission-number-back').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
     document.getElementById('full-card-image').src = mission.imagePath;
     document.getElementById('full-card-image').alt = `Mission ${mission.number}: ${mission.title} Full Card`;
     document.getElementById('mission-description').textContent = mission.description;
-    
+
     // Update scoring
     const scoringItems = document.getElementById('scoring-items');
     scoringItems.innerHTML = '';
@@ -540,10 +540,10 @@ function updateFlashcard() {
         scoringItems.appendChild(div);
     });
     document.getElementById('max-points').textContent = mission.maxPoints;
-    
+
     // Update metadata
     document.getElementById('attachment-type').textContent = mission.attachmentType;
-    
+
     // Update difficulty stars
     const difficultyStars = document.getElementById('difficulty-stars');
     difficultyStars.innerHTML = '';
@@ -552,12 +552,12 @@ function updateFlashcard() {
         star.className = `star ${i <= mission.difficulty ? 'filled' : 'empty'}`;
         difficultyStars.appendChild(star);
     }
-    
+
     // Update priority
     const priorityElement = document.getElementById('priority');
     priorityElement.textContent = mission.priority;
     priorityElement.className = `priority-badge ${mission.priority.toLowerCase()}`;
-    
+
     // Update strategy tips
     const tipsList = document.getElementById('strategy-tips');
     tipsList.innerHTML = '';
@@ -566,14 +566,14 @@ function updateFlashcard() {
         li.textContent = tip;
         tipsList.appendChild(li);
     });
-    
+
     // Update button states
     document.getElementById('prev-btn').disabled = currentMissionIndex === 0;
     document.getElementById('next-btn').disabled = currentMissionIndex === missions.length - 1;
-    
+
     // Update quick nav
     updateQuickNavHighlight();
-    
+
     // Track progress
     userProgress.cardsStudied.add(mission.number);
     saveProgress();
@@ -601,7 +601,7 @@ function nextMission() {
 function initializeQuickNav() {
     const grid = document.getElementById('quick-nav-grid');
     grid.innerHTML = '';
-    
+
     missions.forEach((mission, index) => {
         const btn = document.createElement('button');
         btn.className = 'quick-nav-btn';
@@ -629,22 +629,22 @@ function startQuiz(type) {
     quizState.currentQuestion = 0;
     quizState.score = 0;
     quizState.answers = [];
-    
+
     document.getElementById('quiz-start').style.display = 'none';
     document.getElementById('quiz-results').style.display = 'none';
     document.getElementById('quiz-question').style.display = 'block';
-    
+
     // Initialize quiz score display
     document.getElementById('quiz-score').textContent = '0';
     document.getElementById('quiz-total').textContent = quizState.questions.length;
-    
+
     showQuizQuestion();
 }
 
 function generateQuizQuestions(type) {
     const questions = [];
     const questionCount = 10;
-    
+
     switch(type) {
         case 'identify':
             // Mission identification questions
@@ -661,7 +661,7 @@ function generateQuizQuestions(type) {
                 });
             }
             break;
-            
+
         case 'points':
             // Points matching questions
             for (let i = 0; i < questionCount; i++) {
@@ -676,7 +676,7 @@ function generateQuizQuestions(type) {
                 });
             }
             break;
-            
+
         case 'strategy':
             // Strategy and attachment questions
             for (let i = 0; i < questionCount; i++) {
@@ -702,14 +702,14 @@ function generateQuizQuestions(type) {
                 }
             }
             break;
-            
+
         case 'mixed':
             // Mix of all question types
             const types = ['identify', 'points', 'attachment', 'priority'];
             for (let i = 0; i < questionCount; i++) {
                 const questionType = types[Math.floor(Math.random() * types.length)];
                 const mission = missions[Math.floor(Math.random() * missions.length)];
-                
+
                 switch(questionType) {
                     case 'identify':
                         const titleOptions = generateMissionOptions(mission, 'title');
@@ -754,13 +754,13 @@ function generateQuizQuestions(type) {
             }
             break;
     }
-    
+
     return questions;
 }
 
 function generateMissionOptions(correctMission, type) {
     const options = [];
-    
+
     if (type === 'title') {
         options.push(correctMission.title);
         const otherMissions = missions.filter(m => m.number !== correctMission.number);
@@ -772,7 +772,7 @@ function generateMissionOptions(correctMission, type) {
         const otherPoints = possiblePoints.filter(p => p !== correctMission.maxPoints);
         shuffleArray(otherPoints).slice(0, 3).forEach(p => options.push(`${p} points`));
     }
-    
+
     return options;
 }
 
@@ -787,19 +787,19 @@ function shuffleArray(array) {
 
 function showQuizQuestion() {
     const question = quizState.questions[quizState.currentQuestion];
-    
+
     document.getElementById('question-number').textContent = quizState.currentQuestion + 1;
     document.getElementById('total-questions').textContent = quizState.questions.length;
-    
+
     const contentDiv = document.getElementById('question-content');
     contentDiv.innerHTML = '';
-    
+
     // Add question text
     const questionText = document.createElement('div');
     questionText.className = 'question-text';
     questionText.textContent = question.question;
     contentDiv.appendChild(questionText);
-    
+
     // Add image if present
     if (question.image) {
         const img = document.createElement('img');
@@ -807,11 +807,11 @@ function showQuizQuestion() {
         img.className = 'question-image';
         contentDiv.appendChild(img);
     }
-    
+
     // Add options
     const optionsDiv = document.getElementById('question-options');
     optionsDiv.innerHTML = '';
-    
+
     question.options.forEach(option => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
@@ -819,14 +819,14 @@ function showQuizQuestion() {
         btn.addEventListener('click', () => selectAnswer(option));
         optionsDiv.appendChild(btn);
     });
-    
+
     document.getElementById('quiz-next').style.display = 'none';
 }
 
 function selectAnswer(answer) {
     const question = quizState.questions[quizState.currentQuestion];
     const isCorrect = answer === question.correctAnswer;
-    
+
     quizState.answers.push({
         question: question.question,
         userAnswer: answer,
@@ -834,15 +834,15 @@ function selectAnswer(answer) {
         isCorrect: isCorrect,
         missionNumber: question.missionNumber
     });
-    
+
     if (isCorrect) {
         quizState.score++;
     }
-    
+
     // Update quiz score display in header
     document.getElementById('quiz-score').textContent = quizState.score;
     document.getElementById('quiz-total').textContent = quizState.questions.length;
-    
+
     // Update mission mastery
     if (!userProgress.missionMastery[question.missionNumber]) {
         userProgress.missionMastery[question.missionNumber] = {
@@ -854,7 +854,7 @@ function selectAnswer(answer) {
     if (isCorrect) {
         userProgress.missionMastery[question.missionNumber].correct++;
     }
-    
+
     // Show feedback
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(btn => {
@@ -865,13 +865,13 @@ function selectAnswer(answer) {
             btn.classList.add('incorrect');
         }
     });
-    
+
     document.getElementById('quiz-next').style.display = 'block';
 }
 
 function nextQuizQuestion() {
     quizState.currentQuestion++;
-    
+
     if (quizState.currentQuestion >= quizState.questions.length) {
         showQuizResults();
     } else {
@@ -882,21 +882,21 @@ function nextQuizQuestion() {
 function showQuizResults() {
     document.getElementById('quiz-question').style.display = 'none';
     document.getElementById('quiz-results').style.display = 'block';
-    
+
     const percent = Math.round((quizState.score / quizState.questions.length) * 100);
-    
+
     document.getElementById('score-percent').textContent = `${percent}%`;
     document.getElementById('correct-answers').textContent = quizState.score;
     document.getElementById('total-answers').textContent = quizState.questions.length;
-    
+
     // Update score circle
     const scoreCircle = document.querySelector('.score-circle');
     scoreCircle.style.setProperty('--score-percent', percent);
-    
+
     // Show breakdown
     const breakdownDiv = document.getElementById('results-breakdown');
     breakdownDiv.innerHTML = '<h4>Question Breakdown:</h4>';
-    
+
     quizState.answers.forEach((answer, index) => {
         const div = document.createElement('div');
         div.className = `breakdown-item ${answer.isCorrect ? 'breakdown-correct' : 'breakdown-incorrect'}`;
@@ -906,16 +906,16 @@ function showQuizResults() {
         `;
         breakdownDiv.appendChild(div);
     });
-    
+
     // Update progress
     userProgress.quizzesCompleted++;
     userProgress.totalQuizScore += quizState.score;
     userProgress.totalQuizQuestions += quizState.questions.length;
-    
+
     // Update quiz score in header
     document.getElementById('quiz-score').textContent = quizState.score;
     document.getElementById('quiz-total').textContent = quizState.questions.length;
-    
+
     saveProgress();
     checkAchievements();
 }
@@ -923,7 +923,7 @@ function showQuizResults() {
 function restartQuiz() {
     document.getElementById('quiz-results').style.display = 'none';
     document.getElementById('quiz-start').style.display = 'block';
-    
+
     // Reset quiz score display
     document.getElementById('quiz-score').textContent = '0';
     document.getElementById('quiz-total').textContent = '0';
@@ -933,9 +933,9 @@ function restartQuiz() {
 function updateReferenceGrid() {
     const sortBy = document.getElementById('sort-by').value;
     const filterAttachment = document.getElementById('filter-attachment').value;
-    
+
     let filteredMissions = [...missions];
-    
+
     // Apply filter
     if (filterAttachment !== 'all') {
         if (filterAttachment === 'none') {
@@ -946,7 +946,7 @@ function updateReferenceGrid() {
             filteredMissions = filteredMissions.filter(m => m.attachmentType === 'Active');
         }
     }
-    
+
     // Apply sort
     switch(sortBy) {
         case 'number':
@@ -963,11 +963,11 @@ function updateReferenceGrid() {
             filteredMissions.sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]);
             break;
     }
-    
+
     // Render grid
     const grid = document.getElementById('missions-grid');
     grid.innerHTML = '';
-    
+
     filteredMissions.forEach(mission => {
         const card = document.createElement('div');
         card.className = 'mission-card';
@@ -984,19 +984,19 @@ function updateReferenceGrid() {
                 <span class="meta-tag priority">${mission.priority} Priority</span>
             </div>
         `;
-        
+
         card.addEventListener('click', () => {
             currentMissionIndex = missions.findIndex(m => m.number === mission.number);
             switchMode('flashcard');
             updateFlashcard();
         });
-        
+
         grid.appendChild(card);
     });
-    
+
     // Update total points
     const totalPoints = missions.reduce((sum, m) => sum + m.maxPoints, 0);
-    document.getElementById('total-max-points').textContent = 
+    document.getElementById('total-max-points').textContent =
         `${totalPoints} + 50 (precision) + 20 (equipment) = ${totalPoints + 70}`;
 }
 
@@ -1004,28 +1004,28 @@ function updateReferenceGrid() {
 function updateStats() {
     // Cards studied
     document.getElementById('cards-studied').textContent = userProgress.cardsStudied.size;
-    
+
     // Quizzes completed
     document.getElementById('quizzes-completed').textContent = userProgress.quizzesCompleted;
-    
+
     // Average score
-    const avgScore = userProgress.totalQuizQuestions > 0 
+    const avgScore = userProgress.totalQuizQuestions > 0
         ? Math.round((userProgress.totalQuizScore / userProgress.totalQuizQuestions) * 100)
         : 0;
     document.getElementById('average-score').textContent = `${avgScore}%`;
-    
+
     // Study time
     const studyTime = Math.round((Date.now() - userProgress.studyStartTime) / 60000);
     document.getElementById('study-time').textContent = `${studyTime}m`;
-    
+
     // Mission mastery
     const masteryGrid = document.getElementById('mastery-grid');
     masteryGrid.innerHTML = '';
-    
+
     missions.forEach(mission => {
         const mastery = userProgress.missionMastery[mission.number] || { correct: 0, total: 0 };
         const percent = mastery.total > 0 ? Math.round((mastery.correct / mastery.total) * 100) : 0;
-        
+
         const item = document.createElement('div');
         item.className = 'mastery-item';
         item.innerHTML = `
@@ -1037,7 +1037,7 @@ function updateStats() {
         `;
         masteryGrid.appendChild(item);
     });
-    
+
     // Achievements
     updateAchievementsDisplay();
 }
@@ -1069,7 +1069,7 @@ function checkAchievements() {
 function updateAchievementsDisplay() {
     const grid = document.getElementById('achievements-grid');
     grid.innerHTML = '';
-    
+
     achievements.forEach(achievement => {
         const div = document.createElement('div');
         div.className = `achievement ${userProgress.achievements.has(achievement.id) ? 'unlocked' : ''}`;
