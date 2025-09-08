@@ -635,8 +635,15 @@ function startQuiz(type) {
     document.getElementById('quiz-question').style.display = 'block';
 
     // Initialize quiz score display
-    document.getElementById('quiz-score').textContent = '0';
-    document.getElementById('quiz-total').textContent = quizState.questions.length;
+    const scoreElement = document.getElementById('quiz-score');
+    const totalElement = document.getElementById('quiz-total');
+    if (scoreElement && totalElement) {
+        scoreElement.textContent = '0';
+        totalElement.textContent = quizState.questions.length;
+        console.log('Quiz initialized with', quizState.questions.length, 'questions');
+    } else {
+        console.error('Quiz score elements not found!');
+    }
 
     showQuizQuestion();
 }
@@ -840,8 +847,15 @@ function selectAnswer(answer) {
     }
 
     // Update quiz score display in header
-    document.getElementById('quiz-score').textContent = quizState.score;
-    document.getElementById('quiz-total').textContent = quizState.questions.length;
+    const scoreEl = document.getElementById('quiz-score');
+    const totalEl = document.getElementById('quiz-total');
+    if (scoreEl && totalEl) {
+        scoreEl.textContent = quizState.score;
+        totalEl.textContent = quizState.questions.length;
+        console.log('Score updated:', quizState.score, '/', quizState.questions.length);
+    } else {
+        console.error('Cannot update score - elements not found');
+    }
 
     // Update mission mastery
     if (!userProgress.missionMastery[question.missionNumber]) {
