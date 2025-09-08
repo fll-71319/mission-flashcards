@@ -4,7 +4,8 @@ const missions = [
         number: 1,
         title: "Surface Brushing",
         description: "You'll need special tools to clean and uncover buried artifacts without damaging them. Brush away sediment to uncover a piece of this civilization's past.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.02.png",
+        imagePath: "images/mission-01-surface-brushing.png",
+        modelCrop: { top: "35%", height: "35%", scale: 1.8 },
         scoring: [
             { condition: "Soil deposits are completely cleared, touching the mat", points: 10, unit: "each" },
             { condition: "Archaeologist's brush is not touching the dig site", points: 10 }
@@ -25,7 +26,7 @@ const missions = [
         number: 2,
         title: "Map Reveal",
         description: "Archaeologists work hard to unearth important clues about how a civilization once lived. Shift and remove topsoil to reveal sections of a hidden map.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.05.png",
+        imagePath: "images/mission-02-map-reveal.png",
         scoring: [
             { condition: "Topsoil sections are completely cleared", points: 10, unit: "each" }
         ],
@@ -44,7 +45,7 @@ const missions = [
         number: 3,
         title: "Mineshaft Explorer",
         description: "Ayyana the archaeologist is on a mission to discover every secret of the dig site and share what she finds with her team.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.09.png",
+        imagePath: "images/mission-03-mineshaft-explorer.png",
         scoring: [
             { condition: "Your team's minecart is on the opposing team's field", points: 30 },
             { condition: "Bonus: and the opposing team's minecart is on your team's field", points: 10, bonus: true }
@@ -65,7 +66,7 @@ const missions = [
         number: 4,
         title: "Careful Recovery",
         description: "When parts of a site are too dangerous for humans, technology can help safely recover artifacts. Carefully extract the precious artifact from the mine, ensuring the site remains stable.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.12.png",
+        imagePath: "images/mission-04-careful-recovery.png",
         scoring: [
             { condition: "Precious artifact is not touching the mine", points: 30 },
             { condition: "Both support structures are standing", points: 10 }
@@ -86,7 +87,7 @@ const missions = [
         number: 5,
         title: "Who Lived Here?",
         description: "Rebuild the structure to restore a vital part of the village where people once lived.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.17.png",
+        imagePath: "images/mission-05-who-lived-here.png",
         scoring: [
             { condition: "Structure floor is completely upright", points: 30 }
         ],
@@ -105,7 +106,7 @@ const missions = [
         number: 6,
         title: "Forge",
         description: "Ayyana's team believes this forge was used to smelt ore and craft tools. Release the ore blocks and search carefully – one block holds a mysterious artifact waiting to be discovered.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.20.png",
+        imagePath: "images/mission-06-forge.png",
         scoring: [
             { condition: "Ore blocks are not touching the forge", points: 10, unit: "each" }
         ],
@@ -125,7 +126,7 @@ const missions = [
         number: 7,
         title: "Heavy Lifting",
         description: "This millstone enabled people to process grain and gives insight into their daily lives. Due to its size and weight, moving this artifact could prove to be a challenge.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.26.png",
+        imagePath: "images/mission-07-heavy-lifting.png",
         scoring: [
             { condition: "Millstone is no longer touching its base", points: 30 }
         ],
@@ -145,7 +146,7 @@ const missions = [
         number: 8,
         title: "Silo",
         description: "Empty the silo of the preserved food so it can be analyzed at the lab.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.29.png",
+        imagePath: "images/mission-08-silo.png",
         scoring: [
             { condition: "Preserved pieces are outside the silo", points: 10, unit: "each" }
         ],
@@ -165,7 +166,7 @@ const missions = [
         number: 9,
         title: "What's on Sale?",
         description: "Restore the market stall and reveal items that were once traded between the village and its visitors.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.35.png",
+        imagePath: "images/mission-09-whats-on-sale.png",
         scoring: [
             { condition: "Roof is completely raised", points: 20 },
             { condition: "Market wares are raised", points: 10 }
@@ -186,7 +187,7 @@ const missions = [
         number: 10,
         title: "Tip the Scales",
         description: "This ancient tool ensured that each item received a fair and balanced price.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.39.png",
+        imagePath: "images/mission-10-tip-the-scales.png",
         scoring: [
             { condition: "Scale is tipped and touching the mat", points: 20 },
             { condition: "Scale pan is completely removed", points: 10 }
@@ -207,7 +208,7 @@ const missions = [
         number: 11,
         title: "Angler Artifacts",
         description: "Your team has discovered some interesting artifacts at the port. Use the crane to excavate the site.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.42.png",
+        imagePath: "images/mission-11-angler-artifacts.png",
         scoring: [
             { condition: "Artifacts are raised above the ground layer", points: 20 },
             { condition: "Bonus: and the crane flag is at least partly lowered", points: 10, bonus: true }
@@ -228,7 +229,7 @@ const missions = [
         number: 12,
         title: "Salvage Operation",
         description: "An ancient ship discovered at the beach is at risk of further decay. Excavate the vessel without damaging its delicate structure.",
-        imagePath: "../mission-cards/Screenshot 2025-09-07 at 21.21.46.png",
+        imagePath: "images/mission-12-salvage-operation.png",
         scoring: [
             { condition: "Sand is completely cleared", points: 20 },
             { condition: "Ship is completely raised", points: 10 }
