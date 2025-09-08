@@ -256,6 +256,68 @@ const missions = [
             "Consider doing if near other beach missions"
         ],
         noHandTouch: true
+    },
+    {
+        number: 13,
+        title: "Statue Rebuild",
+        description: "Reconstruct the broken statue to honor the civilization that once lived here.",
+        imagePath: "images/mission-13-statue-rebuild.png",
+        modelImagePath: "images/mission-13-statue-rebuild.model.png",
+        scoring: [
+            { condition: "Statue is completely reconstructed and upright", points: 30 }
+        ],
+        maxPoints: 30,
+        attachmentType: "Active",
+        difficulty: 4,
+        priority: "Medium",
+        strategies: [
+            "Requires precise placement and alignment",
+            "Statue must be fully assembled and stable",
+            "Consider doing if robot has reliable lifting capability"
+        ],
+        noHandTouch: true
+    },
+    {
+        number: 14,
+        title: "Forum",
+        description: "Deliver artifacts to the forum for display and preservation.",
+        imagePath: "images/mission-14-forum.png",
+        modelImagePath: "images/mission-14-forum.model.png",
+        scoring: [
+            { condition: "Artifacts are delivered to the forum", points: 5, unit: "each" }
+        ],
+        maxPoints: 20,
+        attachmentType: "Active",
+        difficulty: 2,
+        priority: "High",
+        strategies: [
+            "Simple delivery mission with good point value",
+            "Multiple artifacts available for transport",
+            "Artifacts may come from Mission 6 (Forge ore blocks)",
+            "Reliable points for completing other missions first"
+        ],
+        noHandTouch: false
+    },
+    {
+        number: 15,
+        title: "Site Marking",
+        description: "Place flags at excavation sites to mark areas for future exploration.",
+        imagePath: "images/mission-15-site-marking.png",
+        modelImagePath: "images/mission-15-site-marking.model.png",
+        scoring: [
+            { condition: "Flag is placed at excavation site", points: 10, unit: "each" }
+        ],
+        maxPoints: 30,
+        attachmentType: "Active",
+        difficulty: 3,
+        priority: "Medium",
+        strategies: [
+            "Multiple flag placement opportunities",
+            "Flags must be securely positioned",
+            "Can be combined with other missions in same area",
+            "Good backup points if main missions fail"
+        ],
+        noHandTouch: false
     }
 ];
 
@@ -271,7 +333,7 @@ const gameInfo = {
         description: "All equipment fits in one launch area at start of match"
     },
     matchDuration: "2.5 minutes",
-    totalPossiblePoints: 410 // Including all missions + precision + equipment bonus
+    totalPossiblePoints: 520 // All 15 missions (450) + precision (50) + equipment bonus (20)
 };
 
 // Application State
@@ -572,6 +634,10 @@ function startQuiz(type) {
     document.getElementById('quiz-results').style.display = 'none';
     document.getElementById('quiz-question').style.display = 'block';
     
+    // Initialize quiz score display
+    document.getElementById('quiz-score').textContent = '0';
+    document.getElementById('quiz-total').textContent = quizState.questions.length;
+    
     showQuizQuestion();
 }
 
@@ -772,6 +838,10 @@ function selectAnswer(answer) {
     if (isCorrect) {
         quizState.score++;
     }
+    
+    // Update quiz score display in header
+    document.getElementById('quiz-score').textContent = quizState.score;
+    document.getElementById('quiz-total').textContent = quizState.questions.length;
     
     // Update mission mastery
     if (!userProgress.missionMastery[question.missionNumber]) {
