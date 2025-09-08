@@ -303,6 +303,22 @@ body {
     font-weight: 700;
 }
 
+.full-card-image-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    padding: 10px;
+}
+
+.full-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
 .mission-description {
     color: var(--text-secondary);
     line-height: 1.6;

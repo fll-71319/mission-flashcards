@@ -5,7 +5,7 @@ const missions = [
         title: "Surface Brushing",
         description: "You'll need special tools to clean and uncover buried artifacts without damaging them. Brush away sediment to uncover a piece of this civilization's past.",
         imagePath: "images/mission-01-surface-brushing.png",
-        modelCrop: { top: "35%", height: "35%", scale: 1.8 },
+        modelImagePath: "images/mission-01-surface-brushing.model.png",
         scoring: [
             { condition: "Soil deposits are completely cleared, touching the mat", points: 10, unit: "each" },
             { condition: "Archaeologist's brush is not touching the dig site", points: 10 }
@@ -27,6 +27,7 @@ const missions = [
         title: "Map Reveal",
         description: "Archaeologists work hard to unearth important clues about how a civilization once lived. Shift and remove topsoil to reveal sections of a hidden map.",
         imagePath: "images/mission-02-map-reveal.png",
+        modelImagePath: "images/mission-02-map-reveal.model.png",
         scoring: [
             { condition: "Topsoil sections are completely cleared", points: 10, unit: "each" }
         ],
@@ -46,6 +47,7 @@ const missions = [
         title: "Mineshaft Explorer",
         description: "Ayyana the archaeologist is on a mission to discover every secret of the dig site and share what she finds with her team.",
         imagePath: "images/mission-03-mineshaft-explorer.png",
+        modelImagePath: "images/mission-03-mineshaft-explorer.model.png",
         scoring: [
             { condition: "Your team's minecart is on the opposing team's field", points: 30 },
             { condition: "Bonus: and the opposing team's minecart is on your team's field", points: 10, bonus: true }
@@ -67,6 +69,7 @@ const missions = [
         title: "Careful Recovery",
         description: "When parts of a site are too dangerous for humans, technology can help safely recover artifacts. Carefully extract the precious artifact from the mine, ensuring the site remains stable.",
         imagePath: "images/mission-04-careful-recovery.png",
+        modelImagePath: "images/mission-04-careful-recovery.model.png",
         scoring: [
             { condition: "Precious artifact is not touching the mine", points: 30 },
             { condition: "Both support structures are standing", points: 10 }
@@ -88,6 +91,7 @@ const missions = [
         title: "Who Lived Here?",
         description: "Rebuild the structure to restore a vital part of the village where people once lived.",
         imagePath: "images/mission-05-who-lived-here.png",
+        modelImagePath: "images/mission-05-who-lived-here.model.png",
         scoring: [
             { condition: "Structure floor is completely upright", points: 30 }
         ],
@@ -107,6 +111,7 @@ const missions = [
         title: "Forge",
         description: "Ayyana's team believes this forge was used to smelt ore and craft tools. Release the ore blocks and search carefully – one block holds a mysterious artifact waiting to be discovered.",
         imagePath: "images/mission-06-forge.png",
+        modelImagePath: "images/mission-06-forge.model.png",
         scoring: [
             { condition: "Ore blocks are not touching the forge", points: 10, unit: "each" }
         ],
@@ -127,6 +132,7 @@ const missions = [
         title: "Heavy Lifting",
         description: "This millstone enabled people to process grain and gives insight into their daily lives. Due to its size and weight, moving this artifact could prove to be a challenge.",
         imagePath: "images/mission-07-heavy-lifting.png",
+        modelImagePath: "images/mission-07-heavy-lifting.model.png",
         scoring: [
             { condition: "Millstone is no longer touching its base", points: 30 }
         ],
@@ -147,6 +153,7 @@ const missions = [
         title: "Silo",
         description: "Empty the silo of the preserved food so it can be analyzed at the lab.",
         imagePath: "images/mission-08-silo.png",
+        modelImagePath: "images/mission-08-silo.model.png",
         scoring: [
             { condition: "Preserved pieces are outside the silo", points: 10, unit: "each" }
         ],
@@ -167,6 +174,7 @@ const missions = [
         title: "What's on Sale?",
         description: "Restore the market stall and reveal items that were once traded between the village and its visitors.",
         imagePath: "images/mission-09-whats-on-sale.png",
+        modelImagePath: "images/mission-09-whats-on-sale.model.png",
         scoring: [
             { condition: "Roof is completely raised", points: 20 },
             { condition: "Market wares are raised", points: 10 }
@@ -188,6 +196,7 @@ const missions = [
         title: "Tip the Scales",
         description: "This ancient tool ensured that each item received a fair and balanced price.",
         imagePath: "images/mission-10-tip-the-scales.png",
+        modelImagePath: "images/mission-10-tip-the-scales.model.png",
         scoring: [
             { condition: "Scale is tipped and touching the mat", points: 20 },
             { condition: "Scale pan is completely removed", points: 10 }
@@ -209,6 +218,7 @@ const missions = [
         title: "Angler Artifacts",
         description: "Your team has discovered some interesting artifacts at the port. Use the crane to excavate the site.",
         imagePath: "images/mission-11-angler-artifacts.png",
+        modelImagePath: "images/mission-11-angler-artifacts.model.png",
         scoring: [
             { condition: "Artifacts are raised above the ground layer", points: 20 },
             { condition: "Bonus: and the crane flag is at least partly lowered", points: 10, bonus: true }
@@ -230,6 +240,7 @@ const missions = [
         title: "Salvage Operation",
         description: "An ancient ship discovered at the beach is at risk of further decay. Excavate the vessel without damaging its delicate structure.",
         imagePath: "images/mission-12-salvage-operation.png",
+        modelImagePath: "images/mission-12-salvage-operation.model.png",
         scoring: [
             { condition: "Sand is completely cleared", points: 20 },
             { condition: "Ship is completely raised", points: 10 }
@@ -442,14 +453,16 @@ function updateFlashcard() {
     document.getElementById('progress-fill').style.width = 
         `${((currentMissionIndex + 1) / missions.length) * 100}%`;
     
-    // Update front
+    // Update front - Use model image (just the LEGO model without text)
     document.querySelector('.mission-number').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
-    document.getElementById('mission-image').src = mission.imagePath;
-    document.getElementById('mission-image').alt = `Mission ${mission.number}: ${mission.title}`;
+    document.getElementById('mission-image').src = mission.modelImagePath || mission.imagePath;
+    document.getElementById('mission-image').alt = `Mission ${mission.number} Model`;
     
-    // Update back
+    // Update back - Use full mission card image
     document.getElementById('mission-title').textContent = mission.title;
     document.getElementById('mission-number-back').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
+    document.getElementById('full-card-image').src = mission.imagePath;
+    document.getElementById('full-card-image').alt = `Mission ${mission.number}: ${mission.title} Full Card`;
     document.getElementById('mission-description').textContent = mission.description;
     
     // Update scoring
@@ -575,7 +588,7 @@ function generateQuizQuestions(type) {
                 questions.push({
                     type: 'identify',
                     question: `What mission is shown in this image?`,
-                    image: mission.imagePath,
+                    image: mission.modelImagePath || mission.imagePath,
                     correctAnswer: mission.title,
                     options: shuffleArray(options),
                     missionNumber: mission.number
@@ -637,7 +650,7 @@ function generateQuizQuestions(type) {
                         questions.push({
                             type: 'identify',
                             question: `What mission is shown in this image?`,
-                            image: mission.imagePath,
+                            image: mission.modelImagePath || mission.imagePath,
                             correctAnswer: mission.title,
                             options: shuffleArray(titleOptions),
                             missionNumber: mission.number
