@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLL UNEARTHED Mission Flashcards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="app-title">
+                        <span class="title-fll">FLL</span>
+                        <span class="title-season">UNEARTHED</span>
+                    </h1>
+                    <div class="subtitle">Mission Training Center</div>
+                </div>
+                <div class="team-info">
+                    <span class="team-number">Team 71319</span>
+                    <span class="team-name">Airborne Inventors</span>
+                </div>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-mode="flashcard">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M21 5c0-1.11-.89-2-2-2H5c-1.11 0-2 .89-2 2v14c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V5m-2 12H5V7h14v10z"/>
+                    </svg>
+                    Flashcards
+                </button>
+                <button class="nav-tab" data-mode="quiz">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M7 2v2h10V2h2v2h3v16H2V4h3V2h2m11 6H4v10h16V8m-7 2v2h2v-2h-2m-4 0v2h2v-2H7m0 4v2h2v-2H7m4 0v2h2v-2h-2z"/>
+                    </svg>
+                    Quiz Mode
+                </button>
+                <button class="nav-tab" data-mode="reference">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m-5 14H7v-2h7v2m3-4H7v-2h10v2m0-4H7V7h10v2z"/>
+                    </svg>
+                    Reference
+                </button>
+                <button class="nav-tab" data-mode="stats">
+                    <svg class="tab-icon" viewBox="0 0 24 24">
+                        <path d="M22 21H2V3h2v16h2v-9h4v9h2V6h4v13h2v-7h4v9z"/>
+                    </svg>
+                    Progress
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Flashcard Mode -->
+            <div class="mode-content active" id="flashcard-mode">
+                <div class="flashcard-container">
+                    <div class="progress-indicator">
+                        <div class="progress-text">
+                            Mission <span id="current-mission">1</span> of <span id="total-missions">12</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" id="flashcard">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="mission-number">Mission 01</div>
+                                <div class="mission-image-container">
+                                    <img src="" alt="Mission Image" class="mission-image" id="mission-image">
+                                </div>
+                                <button class="flip-hint">Click to reveal details</button>
+                            </div>
+                            <div class="card-back">
+                                <div class="mission-header">
+                                    <h2 class="mission-title" id="mission-title"></h2>
+                                    <div class="mission-number-back" id="mission-number-back">Mission 01</div>
+                                </div>
+                                <div class="mission-description" id="mission-description"></div>
+                                
+                                <div class="scoring-section">
+                                    <h3>Scoring Breakdown</h3>
+                                    <div class="scoring-items" id="scoring-items"></div>
+                                    <div class="max-points">
+                                        Max Points: <span id="max-points">0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mission-metadata">
+                                    <div class="metadata-item">
+                                        <span class="metadata-label">Attachment Type:</span>
+                                        <span class="metadata-value" id="attachment-type"></span>
+                                    </div>
+                                    <div class="metadata-item">
+                                        <span class="metadata-label">Difficulty:</span>
+                                        <div class="difficulty-stars" id="difficulty-stars"></div>
+                                    </div>
+                                    <div class="metadata-item">
+                                        <span class="metadata-label">Priority:</span>
+                                        <span class="priority-badge" id="priority"></span>
+                                    </div>
+                                </div>
+
+                                <div class="strategy-tips">
+                                    <h3>Strategy Tips</h3>
+                                    <ul class="tips-list" id="strategy-tips"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button class="control-btn" id="prev-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                            </svg>
+                            Previous
+                        </button>
+                        
+                        <button class="control-btn primary" id="flip-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6m6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/>
+                            </svg>
+                            Flip Card
+                        </button>
+                        
+                        <button class="control-btn" id="next-btn">
+                            Next
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="quick-nav">
+                        <div class="quick-nav-grid" id="quick-nav-grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Mode -->
+            <div class="mode-content" id="quiz-mode">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2>Mission Knowledge Quiz</h2>
+                        <div class="quiz-score">
+                            Score: <span id="quiz-score">0</span> / <span id="quiz-total">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-start" id="quiz-start">
+                        <h3>Test Your Mission Knowledge!</h3>
+                        <p>Choose a quiz type to begin:</p>
+                        <div class="quiz-options">
+                            <button class="quiz-option-btn" data-quiz-type="identify">
+                                <div class="quiz-option-icon">🎯</div>
+                                <div class="quiz-option-title">Mission Identification</div>
+                                <div class="quiz-option-desc">Identify missions from images</div>
+                            </button>
+                            <button class="quiz-option-btn" data-quiz-type="points">
+                                <div class="quiz-option-icon">💯</div>
+                                <div class="quiz-option-title">Points Challenge</div>
+                                <div class="quiz-option-desc">Match missions with their point values</div>
+                            </button>
+                            <button class="quiz-option-btn" data-quiz-type="strategy">
+                                <div class="quiz-option-icon">🎮</div>
+                                <div class="quiz-option-title">Strategy Quiz</div>
+                                <div class="quiz-option-desc">Test attachment types and strategies</div>
+                            </button>
+                            <button class="quiz-option-btn" data-quiz-type="mixed">
+                                <div class="quiz-option-icon">🏆</div>
+                                <div class="quiz-option-title">Ultimate Challenge</div>
+                                <div class="quiz-option-desc">Mixed questions from all categories</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question" id="quiz-question" style="display: none;">
+                        <div class="question-progress">
+                            Question <span id="question-number">1</span> of <span id="total-questions">10</span>
+                        </div>
+                        <div class="question-content" id="question-content"></div>
+                        <div class="question-options" id="question-options"></div>
+                        <button class="quiz-next-btn" id="quiz-next" style="display: none;">Next Question</button>
+                    </div>
+
+                    <div class="quiz-results" id="quiz-results" style="display: none;">
+                        <h3>Quiz Complete!</h3>
+                        <div class="results-score">
+                            <div class="score-circle">
+                                <span class="score-percent" id="score-percent">0%</span>
+                            </div>
+                            <div class="score-details">
+                                You got <span id="correct-answers">0</span> out of <span id="total-answers">0</span> correct!
+                            </div>
+                        </div>
+                        <div class="results-breakdown" id="results-breakdown"></div>
+                        <button class="quiz-restart-btn" id="quiz-restart">Try Another Quiz</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reference Mode -->
+            <div class="mode-content" id="reference-mode">
+                <div class="reference-container">
+                    <div class="reference-header">
+                        <h2>Mission Reference Guide</h2>
+                        <div class="filter-controls">
+                            <select id="sort-by" class="filter-select">
+                                <option value="number">Sort by Number</option>
+                                <option value="points">Sort by Points</option>
+                                <option value="difficulty">Sort by Difficulty</option>
+                                <option value="priority">Sort by Priority</option>
+                            </select>
+                            <select id="filter-attachment" class="filter-select">
+                                <option value="all">All Attachments</option>
+                                <option value="passive">Passive Only</option>
+                                <option value="active">Active Only</option>
+                                <option value="none">No Attachment</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="missions-grid" id="missions-grid"></div>
+                    
+                    <div class="total-points-summary">
+                        <h3>Competition Summary</h3>
+                        <div class="summary-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Total Missions:</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Maximum Points:</span>
+                                <span class="stat-value" id="total-max-points">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Match Duration:</span>
+                                <span class="stat-value">2.5 minutes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Precision Tokens:</span>
+                                <span class="stat-value">6 (50 points)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Mode -->
+            <div class="mode-content" id="stats-mode">
+                <div class="stats-container">
+                    <h2>Your Progress</h2>
+                    
+                    <div class="stats-overview">
+                        <div class="stat-card">
+                            <div class="stat-icon">📚</div>
+                            <div class="stat-number" id="cards-studied">0</div>
+                            <div class="stat-label">Cards Studied</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-number" id="quizzes-completed">0</div>
+                            <div class="stat-label">Quizzes Completed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-number" id="average-score">0%</div>
+                            <div class="stat-label">Average Score</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-number" id="study-time">0m</div>
+                            <div class="stat-label">Study Time</div>
+                        </div>
+                    </div>
+
+                    <div class="mission-mastery">
+                        <h3>Mission Mastery</h3>
+                        <div class="mastery-grid" id="mastery-grid"></div>
+                    </div>
+
+                    <div class="achievements">
+                        <h3>Achievements</h3>
+                        <div class="achievements-grid" id="achievements-grid"></div>
+                    </div>
+
+                    <button class="reset-progress-btn" id="reset-progress">Reset Progress</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Keyboard Shortcuts Modal -->
+        <div class="modal" id="shortcuts-modal">
+            <div class="modal-content">
+                <h3>Keyboard Shortcuts</h3>
+                <div class="shortcuts-list">
+                    <div class="shortcut">
+                        <kbd>Space</kbd> or <kbd>F</kbd> - Flip card
+                    </div>
+                    <div class="shortcut">
+                        <kbd>←</kbd> or <kbd>A</kbd> - Previous mission
+                    </div>
+                    <div class="shortcut">
+                        <kbd>→</kbd> or <kbd>D</kbd> - Next mission
+                    </div>
+                    <div class="shortcut">
+                        <kbd>1-9</kbd> - Jump to mission
+                    </div>
+                    <div class="shortcut">
+                        <kbd>?</kbd> - Show shortcuts
+                    </div>
+                    <div class="shortcut">
+                        <kbd>Esc</kbd> - Close modal
+                    </div>
+                </div>
+                <button class="modal-close" id="close-modal">Close</button>
+            </div>
+        </div>
+
+        <!-- Help Button -->
+        <button class="help-btn" id="help-btn" title="Keyboard Shortcuts">
+            <svg viewBox="0 0 24 24">
+                <path d="M11 18h2v-2h-2v2m1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
