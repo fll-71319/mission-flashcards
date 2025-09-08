@@ -284,17 +284,17 @@ const missions = [
         imagePath: "images/mission-14-forum.png",
         modelImagePath: "images/mission-14-forum.model.png",
         scoring: [
-            { condition: "Artifacts are delivered to the forum", points: 5, unit: "each" }
+            { condition: "Artifacts touching the mat and at least partly in the forum", points: 5, unit: "each" }
         ],
-        maxPoints: 20,
+        maxPoints: 35,
         attachmentType: "Active",
         difficulty: 2,
         priority: "High",
         strategies: [
-            "Simple delivery mission with good point value",
-            "Multiple artifacts available for transport",
-            "Artifacts may come from Mission 6 (Forge ore blocks)",
-            "Reliable points for completing other missions first"
+            "7 artifacts possible: Brush, Topsoil, Precious Artifact, Opposing Team's Minecart, Ore with Fossilized Artifact, Millstone, Scale Pan",
+            "Collect artifacts from other missions and deliver to forum",
+            "Can be done by hand in home area",
+            "Maximum 35 points if all 7 artifacts delivered"
         ],
         noHandTouch: false
     },
@@ -333,7 +333,7 @@ const gameInfo = {
         description: "All equipment fits in one launch area at start of match"
     },
     matchDuration: "2.5 minutes",
-    totalPossiblePoints: 520 // All 15 missions (450) + precision (50) + equipment bonus (20)
+    totalPossiblePoints: 565 // All 15 missions (495) + precision (50) + equipment bonus (20)
 };
 
 // Application State
