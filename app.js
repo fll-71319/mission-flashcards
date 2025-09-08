@@ -4,8 +4,8 @@ const missions = [
         number: 1,
         title: "Surface Brushing",
         description: "You'll need special tools to clean and uncover buried artifacts without damaging them. Brush away sediment to uncover a piece of this civilization's past.",
-        imagePath: "images/mission-01-surface-brushing.png",
-        modelImagePath: "images/mission-01-surface-brushing.model.png",
+        imagePath: "images/optimized/mission-01-surface-brushing.jpg",
+        modelImagePath: "images/optimized/mission-01-surface-brushing.model.jpg",
         scoring: [
             { condition: "Soil deposits are completely cleared, touching the mat", points: 10, unit: "each" },
             { condition: "Archaeologist's brush is not touching the dig site", points: 10 }
@@ -26,8 +26,8 @@ const missions = [
         number: 2,
         title: "Map Reveal",
         description: "Archaeologists work hard to unearth important clues about how a civilization once lived. Shift and remove topsoil to reveal sections of a hidden map.",
-        imagePath: "images/mission-02-map-reveal.png",
-        modelImagePath: "images/mission-02-map-reveal.model.png",
+        imagePath: "images/optimized/mission-02-map-reveal.jpg",
+        modelImagePath: "images/optimized/mission-02-map-reveal.model.jpg",
         scoring: [
             { condition: "Topsoil sections are completely cleared", points: 10, unit: "each" }
         ],
@@ -46,8 +46,8 @@ const missions = [
         number: 3,
         title: "Mineshaft Explorer",
         description: "Ayyana the archaeologist is on a mission to discover every secret of the dig site and share what she finds with her team.",
-        imagePath: "images/mission-03-mineshaft-explorer.png",
-        modelImagePath: "images/mission-03-mineshaft-explorer.model.png",
+        imagePath: "images/optimized/mission-03-mineshaft-explorer.jpg",
+        modelImagePath: "images/optimized/mission-03-mineshaft-explorer.model.jpg",
         scoring: [
             { condition: "Your team's minecart is on the opposing team's field", points: 30 },
             { condition: "Bonus: and the opposing team's minecart is on your team's field", points: 10, bonus: true }
@@ -68,8 +68,8 @@ const missions = [
         number: 4,
         title: "Careful Recovery",
         description: "When parts of a site are too dangerous for humans, technology can help safely recover artifacts. Carefully extract the precious artifact from the mine, ensuring the site remains stable.",
-        imagePath: "images/mission-04-careful-recovery.png",
-        modelImagePath: "images/mission-04-careful-recovery.model.png",
+        imagePath: "images/optimized/mission-04-careful-recovery.jpg",
+        modelImagePath: "images/optimized/mission-04-careful-recovery.model.jpg",
         scoring: [
             { condition: "Precious artifact is not touching the mine", points: 30 },
             { condition: "Both support structures are standing", points: 10 }
@@ -90,8 +90,8 @@ const missions = [
         number: 5,
         title: "Who Lived Here?",
         description: "Rebuild the structure to restore a vital part of the village where people once lived.",
-        imagePath: "images/mission-05-who-lived-here.png",
-        modelImagePath: "images/mission-05-who-lived-here.model.png",
+        imagePath: "images/optimized/mission-05-who-lived-here.jpg",
+        modelImagePath: "images/optimized/mission-05-who-lived-here.model.jpg",
         scoring: [
             { condition: "Structure floor is completely upright", points: 30 }
         ],
@@ -110,8 +110,8 @@ const missions = [
         number: 6,
         title: "Forge",
         description: "Ayyana's team believes this forge was used to smelt ore and craft tools. Release the ore blocks and search carefully – one block holds a mysterious artifact waiting to be discovered.",
-        imagePath: "images/mission-06-forge.png",
-        modelImagePath: "images/mission-06-forge.model.png",
+        imagePath: "images/optimized/mission-06-forge.jpg",
+        modelImagePath: "images/optimized/mission-06-forge.model.jpg",
         scoring: [
             { condition: "Ore blocks are not touching the forge", points: 10, unit: "each" }
         ],
@@ -131,8 +131,8 @@ const missions = [
         number: 7,
         title: "Heavy Lifting",
         description: "This millstone enabled people to process grain and gives insight into their daily lives. Due to its size and weight, moving this artifact could prove to be a challenge.",
-        imagePath: "images/mission-07-heavy-lifting.png",
-        modelImagePath: "images/mission-07-heavy-lifting.model.png",
+        imagePath: "images/optimized/mission-07-heavy-lifting.jpg",
+        modelImagePath: "images/optimized/mission-07-heavy-lifting.model.jpg",
         scoring: [
             { condition: "Millstone is no longer touching its base", points: 30 }
         ],
@@ -152,8 +152,8 @@ const missions = [
         number: 8,
         title: "Silo",
         description: "Empty the silo of the preserved food so it can be analyzed at the lab.",
-        imagePath: "images/mission-08-silo.png",
-        modelImagePath: "images/mission-08-silo.model.png",
+        imagePath: "images/optimized/mission-08-silo.jpg",
+        modelImagePath: "images/optimized/mission-08-silo.model.jpg",
         scoring: [
             { condition: "Preserved pieces are outside the silo", points: 10, unit: "each" }
         ],
@@ -173,8 +173,8 @@ const missions = [
         number: 9,
         title: "What's on Sale?",
         description: "Restore the market stall and reveal items that were once traded between the village and its visitors.",
-        imagePath: "images/mission-09-whats-on-sale.png",
-        modelImagePath: "images/mission-09-whats-on-sale.model.png",
+        imagePath: "images/optimized/mission-09-whats-on-sale.jpg",
+        modelImagePath: "images/optimized/mission-09-whats-on-sale.model.jpg",
         scoring: [
             { condition: "Roof is completely raised", points: 20 },
             { condition: "Market wares are raised", points: 10 }
@@ -195,8 +195,8 @@ const missions = [
         number: 10,
         title: "Tip the Scales",
         description: "This ancient tool ensured that each item received a fair and balanced price.",
-        imagePath: "images/mission-10-tip-the-scales.png",
-        modelImagePath: "images/mission-10-tip-the-scales.model.png",
+        imagePath: "images/optimized/mission-10-tip-the-scales.jpg",
+        modelImagePath: "images/optimized/mission-10-tip-the-scales.model.jpg",
         scoring: [
             { condition: "Scale is tipped and touching the mat", points: 20 },
             { condition: "Scale pan is completely removed", points: 10 }
@@ -217,8 +217,8 @@ const missions = [
         number: 11,
         title: "Angler Artifacts",
         description: "Your team has discovered some interesting artifacts at the port. Use the crane to excavate the site.",
-        imagePath: "images/mission-11-angler-artifacts.png",
-        modelImagePath: "images/mission-11-angler-artifacts.model.png",
+        imagePath: "images/optimized/mission-11-angler-artifacts.jpg",
+        modelImagePath: "images/optimized/mission-11-angler-artifacts.model.jpg",
         scoring: [
             { condition: "Artifacts are raised above the ground layer", points: 20 },
             { condition: "Bonus: and the crane flag is at least partly lowered", points: 10, bonus: true }
@@ -239,8 +239,8 @@ const missions = [
         number: 12,
         title: "Salvage Operation",
         description: "An ancient ship discovered at the beach is at risk of further decay. Excavate the vessel without damaging its delicate structure.",
-        imagePath: "images/mission-12-salvage-operation.png",
-        modelImagePath: "images/mission-12-salvage-operation.model.png",
+        imagePath: "images/optimized/mission-12-salvage-operation.jpg",
+        modelImagePath: "images/optimized/mission-12-salvage-operation.model.jpg",
         scoring: [
             { condition: "Sand is completely cleared", points: 20 },
             { condition: "Ship is completely raised", points: 10 }
@@ -261,8 +261,8 @@ const missions = [
         number: 13,
         title: "Statue Rebuild",
         description: "Reconstruct the broken statue to honor the civilization that once lived here.",
-        imagePath: "images/mission-13-statue-rebuild.png",
-        modelImagePath: "images/mission-13-statue-rebuild.model.png",
+        imagePath: "images/optimized/mission-13-statue-rebuild.jpg",
+        modelImagePath: "images/optimized/mission-13-statue-rebuild.model.jpg",
         scoring: [
             { condition: "Statue is completely reconstructed and upright", points: 30 }
         ],
@@ -281,8 +281,8 @@ const missions = [
         number: 14,
         title: "Forum",
         description: "Deliver artifacts to the forum for display and preservation.",
-        imagePath: "images/mission-14-forum.png",
-        modelImagePath: "images/mission-14-forum.model.png",
+        imagePath: "images/optimized/mission-14-forum.jpg",
+        modelImagePath: "images/optimized/mission-14-forum.model.jpg",
         scoring: [
             { condition: "Artifacts are delivered to the forum", points: 5, unit: "each" }
         ],
@@ -302,8 +302,8 @@ const missions = [
         number: 15,
         title: "Site Marking",
         description: "Place flags at excavation sites to mark areas for future exploration.",
-        imagePath: "images/mission-15-site-marking.png",
-        modelImagePath: "images/mission-15-site-marking.model.png",
+        imagePath: "images/optimized/mission-15-site-marking.jpg",
+        modelImagePath: "images/optimized/mission-15-site-marking.model.jpg",
         scoring: [
             { condition: "Flag is placed at excavation site", points: 10, unit: "each" }
         ],
@@ -515,17 +515,37 @@ function updateFlashcard() {
     document.getElementById('progress-fill').style.width =
         `${((currentMissionIndex + 1) / missions.length) * 100}%`;
 
-    // Update front - Use model image (just the LEGO model without text)
+    // Update front - Use model image with preloading
     document.querySelector('.mission-number').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
-    document.getElementById('mission-image').src = mission.modelImagePath || mission.imagePath;
-    document.getElementById('mission-image').alt = `Mission ${mission.number} Model`;
+    const frontImage = document.getElementById('mission-image');
+    const frontImageContainer = frontImage.parentElement;
+    
+    // Add loading state
+    frontImageContainer.classList.add('loading');
+    frontImage.style.opacity = '0.3';
+    
+    // Load and update front image
+    preloadImage(mission.modelImagePath || mission.imagePath).then(img => {
+        frontImage.src = img.src;
+        frontImage.alt = `Mission ${mission.number} Model`;
+        frontImage.style.opacity = '1';
+        frontImageContainer.classList.remove('loading');
+    });
 
-    // Update back - Use full mission card image
+    // Update back - Use full mission card image with preloading
     document.getElementById('mission-title').textContent = mission.title;
     document.getElementById('mission-number-back').textContent = `Mission ${String(mission.number).padStart(2, '0')}`;
-    document.getElementById('full-card-image').src = mission.imagePath;
-    document.getElementById('full-card-image').alt = `Mission ${mission.number}: ${mission.title} Full Card`;
+    
+    const backImage = document.getElementById('full-card-image');
+    preloadImage(mission.imagePath).then(img => {
+        backImage.src = img.src;
+        backImage.alt = `Mission ${mission.number}: ${mission.title} Full Card`;
+    });
+    
     document.getElementById('mission-description').textContent = mission.description;
+    
+    // Preload adjacent images for smooth navigation
+    preloadAdjacentImages();
 
     // Update scoring
     const scoringItems = document.getElementById('scoring-items');
@@ -1130,6 +1150,38 @@ function showShortcuts() {
 
 function hideShortcuts() {
     document.getElementById('shortcuts-modal').classList.remove('show');
+}
+
+// Image preloading and caching
+const imageCache = new Map();
+
+function preloadImage(src) {
+    if (imageCache.has(src)) {
+        return Promise.resolve(imageCache.get(src));
+    }
+    
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            imageCache.set(src, img);
+            resolve(img);
+        };
+        img.onerror = reject;
+        img.src = src;
+    });
+}
+
+// Preload next/previous images for smooth transitions
+function preloadAdjacentImages() {
+    const prevIndex = (currentMissionIndex - 1 + missions.length) % missions.length;
+    const nextIndex = (currentMissionIndex + 1) % missions.length;
+    
+    // Preload adjacent mission images
+    [prevIndex, currentMissionIndex, nextIndex].forEach(index => {
+        const mission = missions[index];
+        preloadImage(mission.modelImagePath || mission.imagePath);
+        preloadImage(mission.imagePath);
+    });
 }
 
 // Initialize on load
