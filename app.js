@@ -630,6 +630,9 @@ function startQuiz(type) {
     quizState.score = 0;
     quizState.answers = [];
 
+    // Add quiz-active class to show score
+    document.querySelector('.quiz-container').classList.add('quiz-active');
+    
     document.getElementById('quiz-start').style.display = 'none';
     document.getElementById('quiz-results').style.display = 'none';
     document.getElementById('quiz-question').style.display = 'block';
@@ -894,6 +897,9 @@ function nextQuizQuestion() {
 }
 
 function showQuizResults() {
+    // Remove quiz-active class since quiz is done
+    document.querySelector('.quiz-container').classList.remove('quiz-active');
+    
     document.getElementById('quiz-question').style.display = 'none';
     document.getElementById('quiz-results').style.display = 'block';
 
@@ -935,6 +941,9 @@ function showQuizResults() {
 }
 
 function restartQuiz() {
+    // Remove quiz-active class to hide score
+    document.querySelector('.quiz-container').classList.remove('quiz-active');
+    
     document.getElementById('quiz-results').style.display = 'none';
     document.getElementById('quiz-start').style.display = 'block';
 

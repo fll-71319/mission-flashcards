@@ -596,6 +596,14 @@ body {
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
+.quiz-score {
+    display: none;
+}
+
+.quiz-active .quiz-score {
+    display: block;
+}
+
 .quiz-header h2 {
     font-size: 2rem;
     color: var(--secondary-color);
