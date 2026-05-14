@@ -79,3 +79,31 @@ Simply open `index.html` in a modern web browser. No build process required!
 ## Technology Stack
 
 - Pure HTML5, CSS3, JavaScript (ES6+)
+- No external dependencies
+- Responsive design
+- LocalStorage for progress persistence
+- Progressive enhancement
+
+## Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Team Information
+
+Created for **FLL Team 71319 - Airborne Inventors**
+McKinney STEAM Academy, McKinney, Texas
+
+## License
+
+This project is open source and available for other FLL teams to use and adapt for their training needs.
+
+## Contributing
+
+Feel free to fork this repository and adapt it for your team's needs. Pull requests with improvements are welcome!
+
+---
+
+*Good luck in the UNEARTHED season! Remember: Discovery, Innovation, Impact, Inclusion, Teamwork, and Fun!*
