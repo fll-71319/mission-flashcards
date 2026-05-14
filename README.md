@@ -1,3 +1,6 @@
+> [!NOTE]
+> **2025-26 UNEARTHED season complete.** Team 71319 competed at the FLL Rookie Qualifier in January 2026. New seasons flashcards will land in a separate repo after the FIRST LEGO League Game Release on August 4, 2026.
+
 # FLL UNEARTHED Mission Flashcards
 
 An interactive training app for FLL Team 71319 Airborne Inventors to master the 2025-2026 UNEARTHED season missions.
@@ -76,31 +79,3 @@ Simply open `index.html` in a modern web browser. No build process required!
 ## Technology Stack
 
 - Pure HTML5, CSS3, JavaScript (ES6+)
-- No external dependencies
-- Responsive design
-- LocalStorage for progress persistence
-- Progressive enhancement
-
-## Browser Support
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Team Information
-
-Created for **FLL Team 71319 - Airborne Inventors**
-McKinney STEAM Academy, McKinney, Texas
-
-## License
-
-This project is open source and available for other FLL teams to use and adapt for their training needs.
-
-## Contributing
-
-Feel free to fork this repository and adapt it for your team's needs. Pull requests with improvements are welcome!
-
----
-
-*Good luck in the UNEARTHED season! Remember: Discovery, Innovation, Impact, Inclusion, Teamwork, and Fun!*
